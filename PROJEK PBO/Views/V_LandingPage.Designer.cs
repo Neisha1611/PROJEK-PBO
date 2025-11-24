@@ -30,7 +30,6 @@
         {
             pictureBox1 = new PictureBox();
             lblPembayaran = new Label();
-            lblProfile = new Label();
             linkLabelProfile = new LinkLabel();
             linkLabelLogout = new LinkLabel();
             linkLabelRiwayatPembayaran = new LinkLabel();
@@ -60,13 +59,6 @@
             lblPembayaran.Name = "lblPembayaran";
             lblPembayaran.Size = new Size(0, 23);
             lblPembayaran.TabIndex = 3;
-            // 
-            // lblProfile
-            // 
-            lblProfile.Location = new Point(0, 0);
-            lblProfile.Name = "lblProfile";
-            lblProfile.Size = new Size(100, 23);
-            lblProfile.TabIndex = 12;
             // 
             // linkLabelProfile
             // 
@@ -169,7 +161,6 @@
             Controls.Add(linkLabelLogout);
             Controls.Add(linkLabelProfile);
             Controls.Add(lblPembayaran);
-            Controls.Add(lblProfile);
             Controls.Add(pictureBox1);
             Name = "V_LandingPage";
             StartPosition = FormStartPosition.CenterScreen;
@@ -182,7 +173,6 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private Label lblProfile;
         private Label lblPembayaran;
         private Label lblRiwayatPembayaran;
         private Label lblLogout;

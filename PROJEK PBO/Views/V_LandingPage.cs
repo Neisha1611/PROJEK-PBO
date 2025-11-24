@@ -39,7 +39,8 @@ namespace PROJEK_PBO.Views
 
         private void linkLabelPembayaran_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            AuthController authController = new AuthController();
+            authController.showListPesanan(this, _userId);
         }
 
         private void linkLabelRiwayatPembayaran_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

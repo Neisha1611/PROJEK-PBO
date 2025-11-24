@@ -29,31 +29,35 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            linkLabelKembali = new LinkLabel();
+            btnKembali = new LinkLabel();
             userBindingSource = new BindingSource(components);
             pictureBox1 = new PictureBox();
-            dataGridViewProfile = new DataGridView();
             dbContextBindingSource = new BindingSource(components);
+            txtnama = new TextBox();
+            txtalamat = new TextBox();
+            txtnotelp = new TextBox();
+            txtemail = new TextBox();
+            txtpassword = new TextBox();
+            btnedit = new Button();
             ((System.ComponentModel.ISupportInitialize)userBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewProfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dbContextBindingSource).BeginInit();
             SuspendLayout();
             // 
-            // linkLabelKembali
+            // btnKembali
             // 
-            linkLabelKembali.AutoSize = true;
-            linkLabelKembali.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            linkLabelKembali.Image = Properties.Resources.Group_254;
-            linkLabelKembali.LinkBehavior = LinkBehavior.NeverUnderline;
-            linkLabelKembali.LinkColor = Color.Black;
-            linkLabelKembali.Location = new Point(131, 93);
-            linkLabelKembali.Name = "linkLabelKembali";
-            linkLabelKembali.Size = new Size(75, 20);
-            linkLabelKembali.TabIndex = 1;
-            linkLabelKembali.TabStop = true;
-            linkLabelKembali.Text = "KEMBALI";
-            linkLabelKembali.LinkClicked += linkLabelKembali_LinkClicked;
+            btnKembali.AutoSize = true;
+            btnKembali.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnKembali.Image = Properties.Resources.Group_254;
+            btnKembali.LinkBehavior = LinkBehavior.NeverUnderline;
+            btnKembali.LinkColor = Color.Black;
+            btnKembali.Location = new Point(131, 93);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(75, 20);
+            btnKembali.TabIndex = 1;
+            btnKembali.TabStop = true;
+            btnKembali.Text = "KEMBALI";
+            btnKembali.LinkClicked += linkLabelKembali_LinkClicked;
             // 
             // userBindingSource
             // 
@@ -69,28 +73,75 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // dataGridViewProfile
-            // 
-            dataGridViewProfile.AutoGenerateColumns = false;
-            dataGridViewProfile.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewProfile.DataSource = dbContextBindingSource;
-            dataGridViewProfile.Location = new Point(262, 141);
-            dataGridViewProfile.Name = "dataGridViewProfile";
-            dataGridViewProfile.RowHeadersWidth = 51;
-            dataGridViewProfile.Size = new Size(370, 343);
-            dataGridViewProfile.TabIndex = 2;
-            // 
             // dbContextBindingSource
             // 
             dbContextBindingSource.DataSource = typeof(Database.DbContext);
+            // 
+            // txtnama
+            // 
+            txtnama.Location = new Point(282, 183);
+            txtnama.Name = "txtnama";
+            txtnama.ReadOnly = true;
+            txtnama.Size = new Size(319, 27);
+            txtnama.TabIndex = 2;
+            // 
+            // txtalamat
+            // 
+            txtalamat.Location = new Point(282, 247);
+            txtalamat.Name = "txtalamat";
+            txtalamat.ReadOnly = true;
+            txtalamat.Size = new Size(319, 27);
+            txtalamat.TabIndex = 3;
+            // 
+            // txtnotelp
+            // 
+            txtnotelp.Location = new Point(282, 309);
+            txtnotelp.Name = "txtnotelp";
+            txtnotelp.ReadOnly = true;
+            txtnotelp.Size = new Size(319, 27);
+            txtnotelp.TabIndex = 4;
+            // 
+            // txtemail
+            // 
+            txtemail.Location = new Point(282, 375);
+            txtemail.Name = "txtemail";
+            txtemail.ReadOnly = true;
+            txtemail.Size = new Size(319, 27);
+            txtemail.TabIndex = 5;
+            // 
+            // txtpassword
+            // 
+            txtpassword.Location = new Point(282, 438);
+            txtpassword.Name = "txtpassword";
+            txtpassword.PasswordChar = '*';
+            txtpassword.ReadOnly = true;
+            txtpassword.Size = new Size(319, 27);
+            txtpassword.TabIndex = 6;
+            // 
+            // btnedit
+            // 
+            btnedit.BackColor = Color.White;
+            btnedit.Image = Properties.Resources.Group_235__2_;
+            btnedit.Location = new Point(638, 498);
+            btnedit.Name = "btnedit";
+            btnedit.Size = new Size(112, 29);
+            btnedit.TabIndex = 7;
+            btnedit.Text = "EDIT";
+            btnedit.UseVisualStyleBackColor = false;
+            btnedit.Click += btnedit_Click;
             // 
             // Profile
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(881, 624);
-            Controls.Add(dataGridViewProfile);
-            Controls.Add(linkLabelKembali);
+            Controls.Add(btnedit);
+            Controls.Add(txtpassword);
+            Controls.Add(txtemail);
+            Controls.Add(txtnotelp);
+            Controls.Add(txtalamat);
+            Controls.Add(txtnama);
+            Controls.Add(btnKembali);
             Controls.Add(pictureBox1);
             Name = "Profile";
             StartPosition = FormStartPosition.CenterScreen;
@@ -98,17 +149,21 @@
             Load += Profile_Load;
             ((System.ComponentModel.ISupportInitialize)userBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewProfile).EndInit();
             ((System.ComponentModel.ISupportInitialize)dbContextBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private LinkLabel linkLabelKembali;
+        private LinkLabel btnKembali;
         private BindingSource userBindingSource;
         private PictureBox pictureBox1;
-        private DataGridView dataGridViewProfile;
         private BindingSource dbContextBindingSource;
+        private TextBox txtnama;
+        private TextBox txtalamat;
+        private TextBox txtnotelp;
+        private TextBox txtemail;
+        private TextBox txtpassword;
+        private Button btnedit;
     }
 }

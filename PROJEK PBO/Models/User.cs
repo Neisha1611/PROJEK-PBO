@@ -14,6 +14,7 @@ namespace PROJEK_PBO.Models
         private string _password;
         private string _noTelp;
         private string _alamat;
+        private bool isadmin;
 
         public int Id
         {
@@ -49,6 +50,12 @@ namespace PROJEK_PBO.Models
         {
             get { return _password; }
             set { _password = value; }
+        }
+
+        public bool IsAdmin
+        {
+            get { return isadmin; }
+            set { isadmin = value; }
         }
     }
 }

@@ -39,7 +39,8 @@ namespace PROJEK_PBO.Views
 
         private void linkLabelListPesanan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            AuthController authController = new AuthController();
+            _authController.showListPesananAdmin(this, _userId);
         }
 
         private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

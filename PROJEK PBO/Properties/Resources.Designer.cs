@@ -63,6 +63,46 @@ namespace PROJEK_PBO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Detail_Riwayat_Pembayaran {
+            get {
+                object obj = ResourceManager.GetObject("Detail Riwayat Pembayaran", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DetailPembayaran {
+            get {
+                object obj = ResourceManager.GetObject("DetailPembayaran", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DetailPesananAdmin {
+            get {
+                object obj = ResourceManager.GetObject("DetailPesananAdmin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Frame_33 {
+            get {
+                object obj = ResourceManager.GetObject("Frame 33", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Frame_38 {
             get {
                 object obj = ResourceManager.GetObject("Frame 38", resourceCulture);
@@ -223,6 +263,36 @@ namespace PROJEK_PBO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Group_256 {
+            get {
+                object obj = ResourceManager.GetObject("Group 256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Halaman_Sewa {
+            get {
+                object obj = ResourceManager.GetObject("Halaman Sewa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lahan_Admin {
+            get {
+                object obj = ResourceManager.GetObject("Lahan Admin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Login {
             get {
                 object obj = ResourceManager.GetObject("Login", resourceCulture);
@@ -256,6 +326,16 @@ namespace PROJEK_PBO.Properties {
         internal static System.Drawing.Bitmap Register1 {
             get {
                 object obj = ResourceManager.GetObject("Register1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Riwayat_Pembayaran {
+            get {
+                object obj = ResourceManager.GetObject("Riwayat Pembayaran", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
