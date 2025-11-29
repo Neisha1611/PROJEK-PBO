@@ -29,17 +29,16 @@ namespace PROJEK_PBO.Views
 
         private void linkLabelLahan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            _authController.showLahan(this, _userId);
         }
 
         private void linkLabelAkunPenyewa_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            _authController.showAkunPenyewa(this, _userId);
         }
 
         private void linkLabelListPesanan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            AuthController authController = new AuthController();
             _authController.showListPesananAdmin(this, _userId);
         }
 
@@ -51,6 +50,11 @@ namespace PROJEK_PBO.Views
             {
                 _authController.showLogin(this);
             }
+        }
+
+        private void linkLabelLaporan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _authController.showLaporan(this, _userId);
         }
     }
 }

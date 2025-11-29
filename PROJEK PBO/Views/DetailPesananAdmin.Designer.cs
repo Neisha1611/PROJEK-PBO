@@ -30,13 +30,13 @@
         {
             pictureBox1 = new PictureBox();
             button1 = new Button();
-            button2 = new Button();
-            cmbStatus = new ComboBox();
             txtNama = new TextBox();
             txtLahan = new TextBox();
             txtWaktu = new TextBox();
             txtHargaPerTahun = new TextBox();
             txtTotal = new TextBox();
+            btnKonfirmasi = new Button();
+            btnBatalPesanan = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -60,27 +60,6 @@
             button1.Text = "KEMBALI";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Image = Properties.Resources.Group_256;
-            button2.Location = new Point(606, 370);
-            button2.Name = "button2";
-            button2.Size = new Size(113, 29);
-            button2.TabIndex = 2;
-            button2.Text = "BATALKAN";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // cmbStatus
-            // 
-            cmbStatus.FormattingEnabled = true;
-            cmbStatus.Items.AddRange(new object[] { "Pending", "Terkonfirmasi" });
-            cmbStatus.Location = new Point(381, 370);
-            cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(150, 28);
-            cmbStatus.TabIndex = 3;
-            cmbStatus.SelectedIndexChanged += cmbStatus_SelectedIndexChanged_1;
             // 
             // txtNama
             // 
@@ -117,21 +96,45 @@
             txtTotal.Size = new Size(426, 27);
             txtTotal.TabIndex = 8;
             // 
+            // btnKonfirmasi
+            // 
+            btnKonfirmasi.Image = Properties.Resources.Group_235__2_;
+            btnKonfirmasi.Location = new Point(320, 370);
+            btnKonfirmasi.Name = "btnKonfirmasi";
+            btnKonfirmasi.Size = new Size(216, 29);
+            btnKonfirmasi.TabIndex = 9;
+            btnKonfirmasi.Text = "Konfirmasi";
+            btnKonfirmasi.UseVisualStyleBackColor = true;
+            btnKonfirmasi.Click += btnKonfirmasi_Click;
+            // 
+            // btnBatalPesanan
+            // 
+            btnBatalPesanan.ForeColor = Color.White;
+            btnBatalPesanan.Image = Properties.Resources.Group_2;
+            btnBatalPesanan.Location = new Point(612, 370);
+            btnBatalPesanan.Name = "btnBatalPesanan";
+            btnBatalPesanan.Size = new Size(104, 29);
+            btnBatalPesanan.TabIndex = 10;
+            btnBatalPesanan.Text = "Batalkan";
+            btnBatalPesanan.UseVisualStyleBackColor = true;
+            btnBatalPesanan.Click += btnBatalPesanan_Click;
+            // 
             // DetailPesananAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnBatalPesanan);
+            Controls.Add(btnKonfirmasi);
             Controls.Add(txtTotal);
             Controls.Add(txtHargaPerTahun);
             Controls.Add(txtWaktu);
             Controls.Add(txtLahan);
             Controls.Add(txtNama);
-            Controls.Add(cmbStatus);
-            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(pictureBox1);
             Name = "DetailPesananAdmin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "DetailPesananAdmin";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -142,12 +145,12 @@
 
         private PictureBox pictureBox1;
         private Button button1;
-        private Button button2;
-        private ComboBox cmbStatus;
         private TextBox txtNama;
         private TextBox txtLahan;
         private TextBox txtWaktu;
         private TextBox txtHargaPerTahun;
         private TextBox txtTotal;
+        private Button btnKonfirmasi;
+        private Button btnBatalPesanan;
     }
 }

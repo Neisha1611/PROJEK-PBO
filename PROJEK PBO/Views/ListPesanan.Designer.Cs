@@ -74,7 +74,9 @@
             Controls.Add(button1);
             Controls.Add(pictureBox1);
             Name = "ListPesanan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ListPesanan";
+            Load += ListPesanan_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

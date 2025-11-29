@@ -1,6 +1,6 @@
 ﻿namespace PROJEK_PBO.Views
 {
-    partial class RiwayatPembayaran
+    partial class Laporan
     {
         /// <summary>
         /// Required designer variable.
@@ -29,40 +29,40 @@
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
-            btnKembali = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Riwayat_Pembayaran;
+            pictureBox1.Image = Properties.Resources.Laporan_Penjualan;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(799, 450);
+            pictureBox1.Size = new Size(803, 451);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // btnKembali
+            // button1
             // 
-            btnKembali.Image = Properties.Resources.Group_235__2_;
-            btnKembali.Location = new Point(94, 73);
-            btnKembali.Name = "btnKembali";
-            btnKembali.Size = new Size(104, 30);
-            btnKembali.TabIndex = 1;
-            btnKembali.Text = "KEMBALI";
-            btnKembali.UseVisualStyleBackColor = true;
-            btnKembali.Click += btnKembali_Click;
+            button1.Image = Properties.Resources.Group_235__2_;
+            button1.Location = new Point(91, 67);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 33);
+            button1.TabIndex = 1;
+            button1.Text = "KEMBALI";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // RiwayatPembayaran
+            // Laporan
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnKembali);
+            Controls.Add(button1);
             Controls.Add(pictureBox1);
-            Name = "RiwayatPembayaran";
-            Text = "RiwayatPembayaran";
+            Name = "Laporan";
+            Text = "Laporan";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -70,6 +70,6 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private Button btnKembali;
+        private Button button1;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
+            btnKembali = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -42,11 +43,23 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // btnKembali
+            // 
+            btnKembali.Image = Properties.Resources.Group_235__2_;
+            btnKembali.Location = new Point(108, 59);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(114, 33);
+            btnKembali.TabIndex = 1;
+            btnKembali.Text = "KEMBALI";
+            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
+            // 
             // Pembayaran
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnKembali);
             Controls.Add(pictureBox1);
             Name = "Pembayaran";
             Text = "Pembayaran";
@@ -57,5 +70,6 @@
         #endregion
 
         private PictureBox pictureBox1;
+        private Button btnKembali;
     }
 }

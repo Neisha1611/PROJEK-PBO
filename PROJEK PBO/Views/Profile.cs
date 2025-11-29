@@ -120,8 +120,6 @@ namespace PROJEK_PBO.Views
 
                     // Ganti text button
                     btnedit.Text = "EDIT";
-
-                    // Kembalikan warna button
                     btnedit.BackColor = System.Drawing.SystemColors.Control;
                     btnedit.ForeColor = System.Drawing.Color.Black;
 

@@ -34,12 +34,13 @@
             linkLabelAkunPenyewa = new LinkLabel();
             linkLabelLahan = new LinkLabel();
             linkLabelListPesanan = new LinkLabel();
+            linkLabelLaporan = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Frame_43;
+            pictureBox1.Image = Properties.Resources.Frame_302;
             pictureBox1.Location = new Point(-102, -1);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(903, 497);
@@ -69,7 +70,7 @@
             linkLabelLogout.Image = Properties.Resources.Group_235__2_;
             linkLabelLogout.LinkBehavior = LinkBehavior.NeverUnderline;
             linkLabelLogout.LinkColor = Color.Black;
-            linkLabelLogout.Location = new Point(559, 317);
+            linkLabelLogout.Location = new Point(560, 365);
             linkLabelLogout.Name = "linkLabelLogout";
             linkLabelLogout.Size = new Size(117, 27);
             linkLabelLogout.TabIndex = 9;
@@ -99,7 +100,7 @@
             linkLabelLahan.Image = Properties.Resources.Group_235__2_;
             linkLabelLahan.LinkBehavior = LinkBehavior.NeverUnderline;
             linkLabelLahan.LinkColor = Color.Black;
-            linkLabelLahan.Location = new Point(577, 172);
+            linkLabelLahan.Location = new Point(572, 172);
             linkLabelLahan.Name = "linkLabelLahan";
             linkLabelLahan.Size = new Size(94, 27);
             linkLabelLahan.TabIndex = 11;
@@ -122,11 +123,27 @@
             linkLabelListPesanan.Text = "LIST PESANAN";
             linkLabelListPesanan.LinkClicked += linkLabelListPesanan_LinkClicked;
             // 
+            // linkLabelLaporan
+            // 
+            linkLabelLaporan.AutoSize = true;
+            linkLabelLaporan.Font = new Font("Arial Rounded MT Bold", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linkLabelLaporan.Image = Properties.Resources.Group_235__2_;
+            linkLabelLaporan.LinkBehavior = LinkBehavior.NeverUnderline;
+            linkLabelLaporan.LinkColor = Color.FromArgb(0, 0, 0, 0);
+            linkLabelLaporan.Location = new Point(556, 317);
+            linkLabelLaporan.Name = "linkLabelLaporan";
+            linkLabelLaporan.Size = new Size(127, 27);
+            linkLabelLaporan.TabIndex = 13;
+            linkLabelLaporan.TabStop = true;
+            linkLabelLaporan.Text = "LAPORAN";
+            linkLabelLaporan.LinkClicked += linkLabelLaporan_LinkClicked;
+            // 
             // V_LandingPageAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 496);
+            Controls.Add(linkLabelLaporan);
             Controls.Add(linkLabelListPesanan);
             Controls.Add(linkLabelLahan);
             Controls.Add(linkLabelAkunPenyewa);
@@ -159,5 +176,6 @@
         private LinkLabel linkLabelAkunPenyewa;
         private LinkLabel linkLabelLahan;
         private LinkLabel linkLabelListPesanan;
+        private LinkLabel linkLabelLaporan;
     }
 }

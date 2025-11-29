@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROJEK_PBO.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,19 @@ namespace PROJEK_PBO.Views
 {
     public partial class DetailPesanan : Form
     {
-        public DetailPesanan()
+        private AuthController _authcontroller;
+        private int _detailPesananId;
+        private int _userId;
+        public DetailPesanan(int DetailPesananId, int UserId )
         {
             InitializeComponent();
+            this._authcontroller = new AuthController();
+            this._userId = UserId;
         }
 
         private void BtnKembali_Click(object sender, EventArgs e)
         {
-            Show();
+            _authcontroller.showListPesanan(this, _userId);
         }
     }
 }

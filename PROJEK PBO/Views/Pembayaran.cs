@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROJEK_PBO.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace PROJEK_PBO.Views
 {
     public partial class Pembayaran : Form
     {
-        public Pembayaran()
+        private AuthController _authController;
+        private int _userId;
+        public Pembayaran(int userId)
         {
             InitializeComponent();
+        }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
