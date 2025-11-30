@@ -235,13 +235,38 @@ namespace PROJEK_PBO.Controllers
             using var conn = new NpgsqlConnection(_dbContext.connStr);
             conn.Open();
 
-            string query = @"SELECT COUNT(*) FROM detail_pemesanan 
-                     WHERE id_lahan = @idLahan AND status IN ('pending', 'aktif')";
+            string query = @"SELECT COUNT(*) FROM sewa 
+                        WHERE id_lahan = @idLahan 
+                        AND status_sewa = 'berjalan'";
             using var cmd = new NpgsqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@idLahan", idLahan);
             int count = Convert.ToInt32(cmd.ExecuteScalar());
 
-            return count > 0; // true jika lahan sedang disewa
+            return count > 0;
+        }
+
+        public int CekDanUpdateSewaKadaluarsa()
+        {
+            try
+            {
+                using var conn = new NpgsqlConnection(_dbContext.connStr);
+                conn.Open();
+
+                string query = @"UPDATE sewa 
+                        SET status_sewa = 'berakhir' 
+                        WHERE status_sewa = 'berjalan' 
+                        AND (tanggal_sewa + INTERVAL '1 year' * jangka_waktu) < NOW()
+                        RETURNING id_sewa";
+
+                using var cmd = new NpgsqlCommand(query, conn);
+                int count = cmd.ExecuteNonQuery();
+
+                return count; 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error cek dan update sewa kadaluarsa: {ex.Message}");
+            }
         }
 
         public bool LahanSedangDisewa(int idLahan)
@@ -261,17 +286,17 @@ namespace PROJEK_PBO.Controllers
 
             if (reader.Read())
             {
-                DateTime tanggalSewa = reader.GetDateTime(1); // tanggal_sewa
-                int jangka = reader.GetInt32(2); // jangka_waktu, misal dalam tahun
-                DateTime tanggalAkhir = tanggalSewa.AddYears(jangka); // sesuaikan satuan jangka
+                DateTime tanggalSewa = reader.GetDateTime(1); 
+                int jangka = reader.GetInt32(2); 
+                DateTime tanggalAkhir = tanggalSewa.AddYears(jangka); 
 
                 if (DateTime.Now <= tanggalAkhir)
-                    return true; // masih disewa
+                    return true; 
                 else
-                    return false; // masa sewa habis
+                    return false; 
             }
 
-            return false; // tidak ada sewa berjalan
+            return false; 
         }
 
         public void KonfirmasiPesanan(int idDetailPesanan)
@@ -322,28 +347,60 @@ namespace PROJEK_PBO.Controllers
 
         public void BatalkanPesanan(int pesananId)
         {
+            using var conn = new NpgsqlConnection(_dbContext.connStr);
+            conn.Open();
+
+            using var transaction = conn.BeginTransaction();
+
             try
             {
-                using var conn = new NpgsqlConnection(_dbContext.connStr);
-                conn.Open();
+                string checkQuery = @"SELECT status, id_lahan FROM detail_pemesanan WHERE id_detail = @idDetail";
+                using var cmdCheck = new NpgsqlCommand(checkQuery, conn, transaction);
+                cmdCheck.Parameters.AddWithValue("@idDetail", pesananId);
 
-                // Update status detail_pemesanan menjadi 'dibatalkan'
-                string query = @"UPDATE detail_pemesanan 
-                        SET status = 'dibatalkan' 
-                        WHERE id_detail = @idDetail AND status = 'pending'";
-
-                using var cmd = new NpgsqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@idDetail", pesananId);
-
-                int result = cmd.ExecuteNonQuery();
-
-                if (result == 0)
+                using var reader = cmdCheck.ExecuteReader();
+                if (!reader.Read())
                 {
-                    throw new Exception("Pesanan tidak dapat dibatalkan. Hanya pesanan dengan status 'pending' yang bisa dibatalkan.");
+                    throw new Exception("Pesanan tidak ditemukan.");
                 }
+
+                string currentStatus = reader.GetString(0);
+                int idLahan = reader.GetInt32(1);
+                reader.Close();
+
+                if (currentStatus != "pending" && currentStatus != "terkonfirmasi")
+                {
+                    throw new Exception($"Pesanan dengan status '{currentStatus}' tidak dapat dibatalkan.");
+                }
+
+                string updatePesananQuery = @"UPDATE detail_pemesanan 
+                                     SET status = 'dibatalkan' 
+                                     WHERE id_detail = @idDetail";
+                using var cmdUpdate = new NpgsqlCommand(updatePesananQuery, conn, transaction);
+                cmdUpdate.Parameters.AddWithValue("@idDetail", pesananId);
+                cmdUpdate.ExecuteNonQuery();
+
+                if (currentStatus == "terkonfirmasi")
+                {
+                    string updateSewaQuery = @"UPDATE sewa 
+                                      SET status_sewa = 'dihentikan' 
+                                      WHERE id_lahan = @idLahan 
+                                      AND status_sewa = 'berjalan'";
+                    using var cmdSewa = new NpgsqlCommand(updateSewaQuery, conn, transaction);
+                    cmdSewa.Parameters.AddWithValue("@idLahan", idLahan);
+                    int rowsAffected = cmdSewa.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        throw new Exception("Sewa tidak ditemukan atau sudah tidak aktif.");
+                    }
+                }
+
+                transaction.Commit();
             }
             catch (Exception ex)
             {
+                transaction.Rollback();
                 throw new Exception($"Error batalkan pesanan: {ex.Message}");
             }
         }
@@ -418,6 +475,84 @@ namespace PROJEK_PBO.Controllers
             }
         }
 
+        public DataTable GetPesananByUserId(int userId)
+        {
+            using var conn = new NpgsqlConnection(_dbContext.connStr);
+            conn.Open();
+
+            string query = @"SELECT 
+                dp.id_detail AS id_detail,
+                l.nama_lahan AS nama_lahan,
+                dp.tanggal_pemesanan,
+                dp.jangka_waktu AS jangka_waktu,
+                l.harga_per_tahun AS harga_per_tahun,
+                l.harga_per_tahun * dp.jangka_waktu AS total_harga,
+                dp.status
+            FROM detail_pemesanan dp
+            INNER JOIN pemesanan p ON dp.id_pemesanan = p.id_pemesanan
+            INNER JOIN lahan l ON dp.id_lahan = l.id
+            WHERE p.id_pengguna = @userId
+            ORDER BY dp.tanggal_pemesanan DESC";
+
+            using var cmd = new NpgsqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@userId", userId);
+
+            using var adapter = new NpgsqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            return dt;
+        }
+
+        public void BatalkanPesananUser(int idDetailPesanan, int userId)
+        {
+            using var conn = new NpgsqlConnection(_dbContext.connStr);
+            conn.Open();
+
+            using var transaction = conn.BeginTransaction();
+
+            try
+            {
+                string checkQuery = @"SELECT dp.status 
+                            FROM detail_pemesanan dp
+                            INNER JOIN pemesanan p ON dp.id_pemesanan = p.id_pemesanan
+                            WHERE dp.id_detail = @idDetail 
+                            AND p.id_pengguna = @userId";
+
+                using var cmdCheck = new NpgsqlCommand(checkQuery, conn, transaction);
+                cmdCheck.Parameters.AddWithValue("@idDetail", idDetailPesanan);
+                cmdCheck.Parameters.AddWithValue("@userId", userId);
+
+                var result = cmdCheck.ExecuteScalar();
+
+                if (result == null)
+                {
+                    throw new Exception("Pesanan tidak ditemukan atau bukan milik Anda.");
+                }
+
+                string currentStatus = result.ToString();
+                if (currentStatus != "pending")
+                {
+                    throw new Exception("Hanya pesanan dengan status 'pending' yang dapat dibatalkan.");
+                }
+
+                string updateQuery = @"UPDATE detail_pemesanan 
+                             SET status = 'dibatalkan' 
+                             WHERE id_detail = @idDetail";
+
+                using var cmdUpdate = new NpgsqlCommand(updateQuery, conn, transaction);
+                cmdUpdate.Parameters.AddWithValue("@idDetail", idDetailPesanan);
+                cmdUpdate.ExecuteNonQuery();
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                throw new Exception($"Error batalkan pesanan: {ex.Message}");
+            }
+        }
+
         public void showDetailSewa(Form form, int lahanId, int userId)
         {
             form.Hide();
@@ -431,12 +566,7 @@ namespace PROJEK_PBO.Controllers
             Laporan laporanLahan = new Laporan(adminUserId);
             laporanLahan.Show();
         }
-        public void showPembayaran(Form form, int userId)
-        {
-            form.Hide();
-            Pembayaran pembayaran = new Pembayaran(userId);
-            pembayaran.Show();
-        }
+        
         public void showDetailPesanan(Form form, int detailPesananId, int userId)
         {
             form.Hide();
@@ -502,7 +632,15 @@ namespace PROJEK_PBO.Controllers
 
         public void showLogin(Form form)
         {
-            form.Hide();
+            foreach (Form openForm in Application.OpenForms.Cast<Form>().ToList())
+            {
+                if (openForm != form)
+                {
+                    openForm.Close();
+                }
+            }
+
+            form.Close();
             Login login = new Login();
             login.Show();
         }
@@ -525,7 +663,6 @@ namespace PROJEK_PBO.Controllers
         {
             form.Hide();
             V_LandingPageAdmin landingPageAdmin = new V_LandingPageAdmin(userId);
-            landingPageAdmin.FormClosed += (s, e) => form.Close();
             landingPageAdmin.Show();
         }
 

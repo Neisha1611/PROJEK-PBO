@@ -71,7 +71,6 @@ namespace PROJEK_PBO.Views
                 return;
             }
 
-            // Parse jangka waktu dari textbox
             if (!int.TryParse(tbJangkaWaktu.Text, out int jangkawaktu) || jangkawaktu <= 0)
             {
                 MessageBox.Show("Jangka waktu harus berupa angka positif!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);

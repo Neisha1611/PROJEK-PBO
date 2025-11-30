@@ -32,17 +32,62 @@ namespace PROJEK_PBO.Views
             Panel clickedPanel = sender as Panel;
             if (clickedPanel != null && int.TryParse(clickedPanel.Name.Replace("panel", ""), out int lahanId))
             {
+                bool isDisewa = _authController.IsLahanDisewa(lahanId);
+
+                if (isDisewa)
+                {
+                    MessageBox.Show("Lahan ini sedang disewa dan tidak dapat dilihat detailnya.",
+                        "Lahan Tidak Tersedia",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
                 _authController.showDetailLahan(this, lahanId, _userId);
             }
             else
             {
-                MessageBox.Show("Panel tidak valid atau ID lahan tidak ditemukan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Panel tidak valid atau ID lahan tidak ditemukan.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
         private void Lahan_Load(object sender, EventArgs e)
         {
+            UpdatePanelColors();
+        }
+        private void UpdatePanelColors()
+        {
+            try
+            {
+                foreach (var panel in this.Controls.OfType<Panel>())
+                {
+                    if (int.TryParse(panel.Name.Replace("panel", ""), out int lahanId))
+                    {
+                        bool isDisewa = _authController.IsLahanDisewa(lahanId);
 
+                        if (isDisewa)
+                        {
+                            panel.BackColor = Color.FromArgb(220, 53, 69);
+                            panel.Cursor = Cursors.No;
+                        }
+                        else
+                        {
+                            panel.BackColor = Color.LawnGreen;
+                            panel.Cursor = Cursors.Hand;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saat update warna panel: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

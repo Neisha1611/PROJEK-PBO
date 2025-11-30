@@ -90,6 +90,8 @@
             // 
             // dgvPesanan
             // 
+            dgvPesanan.AllowUserToAddRows = false;
+            dgvPesanan.AllowUserToDeleteRows = false;
             dgvPesanan.BackgroundColor = Color.FromArgb(193, 230, 151);
             dgvPesanan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPesanan.Columns.AddRange(new DataGridViewColumn[] { id_detail, nama_pemesan, id_pemesanan, id_lahan, tanggal, jangka_waktu, harga, status });

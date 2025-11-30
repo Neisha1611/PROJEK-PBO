@@ -48,13 +48,40 @@ namespace PROJEK_PBO.Views
 
             if (result == DialogResult.Yes)
             {
-                _authController.showLogin(this);
+                foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+                {
+                    if (form != this)
+                    {
+                        form.Close();
+                    }
+                }
+                Login login = new Login();
+                login.Show();
+                this.Close();
             }
         }
 
         private void linkLabelLaporan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _authController.showLaporan(this, _userId);
+        }
+
+        private void V_LandingPageAdmin_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                int updated = _authController.CekDanUpdateSewaKadaluarsa();
+
+                if (updated > 0)
+                {
+                    MessageBox.Show($"{updated} sewa telah berakhir dan statusnya diupdate", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Console.WriteLine($"{updated} sewa telah berakhir dan statusnya diupdate");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error update status sewa: {ex.Message}");
+            }
         }
     }
 }

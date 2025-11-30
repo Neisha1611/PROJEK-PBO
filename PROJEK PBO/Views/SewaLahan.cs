@@ -71,7 +71,6 @@ namespace PROJEK_PBO.Views
         {
             try
             {
-                // Panggil controller untuk cek detail pesanan
                 return _authController.IsLahanDisewa(idLahan);
             }
             catch (Exception ex)

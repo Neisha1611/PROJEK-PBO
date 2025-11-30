@@ -69,7 +69,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Red;
+            panel1.BackColor = Color.LawnGreen;
             panel1.Location = new Point(76, 79);
             panel1.Name = "panel1";
             panel1.Size = new Size(106, 84);
@@ -79,7 +79,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.Red;
+            panel2.BackColor = Color.LawnGreen;
             panel2.Location = new Point(185, 79);
             panel2.Name = "panel2";
             panel2.Size = new Size(106, 84);
@@ -88,7 +88,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.Red;
+            panel3.BackColor = Color.LawnGreen;
             panel3.Location = new Point(293, 79);
             panel3.Name = "panel3";
             panel3.Size = new Size(106, 84);
@@ -97,7 +97,7 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.Red;
+            panel4.BackColor = Color.LawnGreen;
             panel4.Location = new Point(401, 79);
             panel4.Name = "panel4";
             panel4.Size = new Size(106, 84);
@@ -106,7 +106,7 @@
             // 
             // panel5
             // 
-            panel5.BackColor = Color.Red;
+            panel5.BackColor = Color.LawnGreen;
             panel5.Location = new Point(509, 79);
             panel5.Name = "panel5";
             panel5.Size = new Size(106, 84);
@@ -115,7 +115,7 @@
             // 
             // panel6
             // 
-            panel6.BackColor = Color.Red;
+            panel6.BackColor = Color.LawnGreen;
             panel6.Location = new Point(617, 79);
             panel6.Name = "panel6";
             panel6.Size = new Size(106, 84);
@@ -124,7 +124,7 @@
             // 
             // panel7
             // 
-            panel7.BackColor = Color.Red;
+            panel7.BackColor = Color.LawnGreen;
             panel7.Location = new Point(77, 165);
             panel7.Name = "panel7";
             panel7.Size = new Size(106, 84);
@@ -133,7 +133,7 @@
             // 
             // panel8
             // 
-            panel8.BackColor = Color.Red;
+            panel8.BackColor = Color.LawnGreen;
             panel8.Location = new Point(185, 165);
             panel8.Name = "panel8";
             panel8.Size = new Size(106, 84);
@@ -142,7 +142,7 @@
             // 
             // panel9
             // 
-            panel9.BackColor = Color.Red;
+            panel9.BackColor = Color.LawnGreen;
             panel9.Location = new Point(293, 165);
             panel9.Name = "panel9";
             panel9.Size = new Size(106, 84);
@@ -151,7 +151,7 @@
             // 
             // panel10
             // 
-            panel10.BackColor = Color.Red;
+            panel10.BackColor = Color.LawnGreen;
             panel10.Location = new Point(401, 165);
             panel10.Name = "panel10";
             panel10.Size = new Size(106, 84);
@@ -160,7 +160,7 @@
             // 
             // panel11
             // 
-            panel11.BackColor = Color.Red;
+            panel11.BackColor = Color.LawnGreen;
             panel11.Location = new Point(509, 165);
             panel11.Name = "panel11";
             panel11.Size = new Size(106, 84);
@@ -169,7 +169,7 @@
             // 
             // panel12
             // 
-            panel12.BackColor = Color.Red;
+            panel12.BackColor = Color.LawnGreen;
             panel12.Location = new Point(617, 165);
             panel12.Name = "panel12";
             panel12.Size = new Size(106, 84);
@@ -178,7 +178,7 @@
             // 
             // panel13
             // 
-            panel13.BackColor = Color.Red;
+            panel13.BackColor = Color.LawnGreen;
             panel13.Location = new Point(77, 250);
             panel13.Name = "panel13";
             panel13.Size = new Size(106, 84);
@@ -187,7 +187,7 @@
             // 
             // panel14
             // 
-            panel14.BackColor = Color.Red;
+            panel14.BackColor = Color.LawnGreen;
             panel14.Location = new Point(185, 250);
             panel14.Name = "panel14";
             panel14.Size = new Size(106, 84);
@@ -196,7 +196,7 @@
             // 
             // panel15
             // 
-            panel15.BackColor = Color.Red;
+            panel15.BackColor = Color.LawnGreen;
             panel15.Location = new Point(293, 250);
             panel15.Name = "panel15";
             panel15.Size = new Size(106, 84);
@@ -205,7 +205,7 @@
             // 
             // panel16
             // 
-            panel16.BackColor = Color.Red;
+            panel16.BackColor = Color.LawnGreen;
             panel16.Location = new Point(401, 250);
             panel16.Name = "panel16";
             panel16.Size = new Size(106, 84);
@@ -214,7 +214,7 @@
             // 
             // panel17
             // 
-            panel17.BackColor = Color.Red;
+            panel17.BackColor = Color.LawnGreen;
             panel17.Location = new Point(509, 250);
             panel17.Name = "panel17";
             panel17.Size = new Size(106, 84);
@@ -223,7 +223,7 @@
             // 
             // panel18
             // 
-            panel18.BackColor = Color.Red;
+            panel18.BackColor = Color.LawnGreen;
             panel18.Location = new Point(617, 250);
             panel18.Name = "panel18";
             panel18.Size = new Size(106, 84);
@@ -232,7 +232,7 @@
             // 
             // panel19
             // 
-            panel19.BackColor = Color.Red;
+            panel19.BackColor = Color.LawnGreen;
             panel19.Location = new Point(77, 336);
             panel19.Name = "panel19";
             panel19.Size = new Size(106, 84);
@@ -241,7 +241,7 @@
             // 
             // panel20
             // 
-            panel20.BackColor = Color.Red;
+            panel20.BackColor = Color.LawnGreen;
             panel20.Location = new Point(185, 336);
             panel20.Name = "panel20";
             panel20.Size = new Size(106, 84);
@@ -250,7 +250,7 @@
             // 
             // panel21
             // 
-            panel21.BackColor = Color.Red;
+            panel21.BackColor = Color.LawnGreen;
             panel21.Location = new Point(293, 336);
             panel21.Name = "panel21";
             panel21.Size = new Size(106, 84);
@@ -259,7 +259,7 @@
             // 
             // panel22
             // 
-            panel22.BackColor = Color.Red;
+            panel22.BackColor = Color.LawnGreen;
             panel22.Location = new Point(401, 336);
             panel22.Name = "panel22";
             panel22.Size = new Size(106, 84);
@@ -268,7 +268,7 @@
             // 
             // panel23
             // 
-            panel23.BackColor = Color.Red;
+            panel23.BackColor = Color.LawnGreen;
             panel23.Location = new Point(509, 336);
             panel23.Name = "panel23";
             panel23.Size = new Size(106, 84);
@@ -277,7 +277,7 @@
             // 
             // panel24
             // 
-            panel24.BackColor = Color.Red;
+            panel24.BackColor = Color.LawnGreen;
             panel24.Location = new Point(617, 336);
             panel24.Name = "panel24";
             panel24.Size = new Size(106, 84);

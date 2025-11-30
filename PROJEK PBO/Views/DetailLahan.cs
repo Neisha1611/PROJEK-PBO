@@ -52,7 +52,7 @@ namespace PROJEK_PBO.Views
         private void button2_Click(object sender, EventArgs e)
         {
             isEditing = true;
-            tbLuasLahan.ReadOnly = false;  // Sekarang bisa diklik dan diubah
+            tbLuasLahan.ReadOnly = false; 
             tbHargaPerTahun.ReadOnly = false;
             btnSave.Enabled = true;
             MessageBox.Show("Mode edit aktif. Klik TextBox untuk mengubah nilai.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);

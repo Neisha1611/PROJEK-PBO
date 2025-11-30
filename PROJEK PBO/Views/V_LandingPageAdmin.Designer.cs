@@ -155,6 +155,7 @@
             Name = "V_LandingPageAdmin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "V_LandingPageAdmin";
+            Load += V_LandingPageAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
