@@ -23,7 +23,6 @@ namespace PROJEK_PBO.Views
             this._userId = userId;
             this._authController = new AuthController();
 
-            // Load data profile
             LoadUserProfile();
         }
 
@@ -31,7 +30,6 @@ namespace PROJEK_PBO.Views
         {
             try
             {
-                // Set ReadOnly untuk semua TextBox (sudah ada di Designer)
                 txtnama.ReadOnly = true;
                 txtalamat.ReadOnly = true;
                 txtnotelp.ReadOnly = true;
@@ -48,12 +46,10 @@ namespace PROJEK_PBO.Views
         {
             try
             {
-                // Get user data dari controller
                 currentUser = _authController.GetUserById(_userId);
 
                 if (currentUser != null)
                 {
-                    // Tampilkan data ke TextBox
                     txtnama.Text = currentUser.Nama;
                     txtalamat.Text = currentUser.Alamat;
                     txtnotelp.Text = currentUser.Nomor_Telpon;
@@ -104,24 +100,18 @@ namespace PROJEK_PBO.Views
 
                 btnedit.Text = "SIMPAN";
 
-                btnedit.BackColor = System.Drawing.Color.FromArgb(76, 175, 80); // Hijau
+                btnedit.BackColor = System.Drawing.Color.FromArgb(76, 175, 80);
                 btnedit.ForeColor = System.Drawing.Color.Black;
             }
             else
             {
-                // Mode Save - Simpan perubahan
                 if (SaveProfileChanges())
                 {
-                    // Kembali ke mode ReadOnly
                     txtnama.ReadOnly = true;
                     txtalamat.ReadOnly = true;
                     txtnotelp.ReadOnly = true;
                     txtemail.ReadOnly = true;
 
-                    // Ganti text button
-                    btnedit.Text = "EDIT";
-
-                    // Kembalikan warna button
                     btnedit.BackColor = System.Drawing.SystemColors.Control;
                     btnedit.ForeColor = System.Drawing.Color.Black;
 
@@ -167,7 +157,6 @@ namespace PROJEK_PBO.Views
                     return false;
                 }
 
-                // Validasi format email sederhana
                 if (!txtemail.Text.Contains("@") || !txtemail.Text.Contains("."))
                 {
                     MessageBox.Show("Format email tidak valid!", "Peringatan",
@@ -176,7 +165,6 @@ namespace PROJEK_PBO.Views
                     return false;
                 }
 
-                // Validasi nomor telepon (hanya angka)
                 if (!IsNumeric(txtnotelp.Text))
                 {
                     MessageBox.Show("Nomor telepon hanya boleh berisi angka!", "Peringatan",
@@ -185,7 +173,6 @@ namespace PROJEK_PBO.Views
                     return false;
                 }
 
-                // Update ke database menggunakan controller
                 bool success = _authController.UpdateProfile(
                     _userId,
                     txtnama.Text.Trim(),
@@ -196,7 +183,6 @@ namespace PROJEK_PBO.Views
 
                 if (success)
                 {
-                    // Update object currentUser
                     currentUser.Nama = txtnama.Text.Trim();
                     currentUser.Alamat = txtalamat.Text.Trim();
                     currentUser.Nomor_Telpon = txtnotelp.Text.Trim();
@@ -231,7 +217,6 @@ namespace PROJEK_PBO.Views
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            // Jika sedang mode edit (button text = SIMPAN), tanyakan konfirmasi
             if (btnedit.Text == "SIMPAN")
             {
                 DialogResult result = MessageBox.Show(
@@ -243,12 +228,11 @@ namespace PROJEK_PBO.Views
 
                 if (result == DialogResult.No)
                 {
-                    e.Cancel = true; // Batalkan close
+                    e.Cancel = true;
                     return;
                 }
                 else
                 {
-                    // Jika user pilih Yes, kembalikan ReadOnly sebelum close
                     txtnama.ReadOnly = true;
                     txtalamat.ReadOnly = true;
                     txtnotelp.ReadOnly = true;

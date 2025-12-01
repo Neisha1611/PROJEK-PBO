@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROJEK_PBO.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,22 @@ namespace PROJEK_PBO.Views
 {
     public partial class AkunPenyewa : Form
     {
-        public AkunPenyewa()
+        private AuthController _authController;
+        private int _userId;
+        public AkunPenyewa(int userId)
         {
             InitializeComponent();
+            this._userId = userId;
+        }
+
+        private void AkunPenyewa_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabelKembali_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

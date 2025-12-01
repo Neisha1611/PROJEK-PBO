@@ -60,6 +60,7 @@
             linkLabelKembali.TabIndex = 1;
             linkLabelKembali.TabStop = true;
             linkLabelKembali.Text = "KEMBALI";
+            linkLabelKembali.LinkClicked += linkLabelKembali_LinkClicked;
             // 
             // dbContextBindingSource
             // 
@@ -85,7 +86,9 @@
             Controls.Add(linkLabelKembali);
             Controls.Add(pictureBox1);
             Name = "AkunPenyewa";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AkunPenyewa";
+            Load += AkunPenyewa_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dbContextBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

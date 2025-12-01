@@ -63,6 +63,26 @@ namespace PROJEK_PBO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Detail_Lahan {
+            get {
+                object obj = ResourceManager.GetObject("Detail Lahan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Detail_Lahan_Penyewa {
+            get {
+                object obj = ResourceManager.GetObject("Detail Lahan Penyewa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Detail_Riwayat_Pembayaran {
             get {
                 object obj = ResourceManager.GetObject("Detail Riwayat Pembayaran", resourceCulture);
@@ -86,6 +106,36 @@ namespace PROJEK_PBO.Properties {
         internal static System.Drawing.Bitmap DetailPesananAdmin {
             get {
                 object obj = ResourceManager.GetObject("DetailPesananAdmin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Frame_30 {
+            get {
+                object obj = ResourceManager.GetObject("Frame 30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Frame_301 {
+            get {
+                object obj = ResourceManager.GetObject("Frame 301", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Frame_302 {
+            get {
+                object obj = ResourceManager.GetObject("Frame 302", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,6 +323,16 @@ namespace PROJEK_PBO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Halaman_Penyewaan {
+            get {
+                object obj = ResourceManager.GetObject("Halaman Penyewaan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Halaman_Sewa {
             get {
                 object obj = ResourceManager.GetObject("Halaman Sewa", resourceCulture);
@@ -286,6 +346,16 @@ namespace PROJEK_PBO.Properties {
         internal static System.Drawing.Bitmap Lahan_Admin {
             get {
                 object obj = ResourceManager.GetObject("Lahan Admin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Laporan_Penjualan {
+            get {
+                object obj = ResourceManager.GetObject("Laporan Penjualan", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

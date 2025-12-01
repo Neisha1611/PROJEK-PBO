@@ -41,10 +41,10 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Frame_8__2_;
-            pictureBox1.Location = new Point(-21, -2);
+            pictureBox1.Image = Properties.Resources.Frame_8__4_;
+            pictureBox1.Location = new Point(-4, -2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(826, 558);
+            pictureBox1.Size = new Size(793, 557);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -82,7 +82,7 @@
             linkLabelLogout.Image = Properties.Resources.Group_235__2_;
             linkLabelLogout.LinkBehavior = LinkBehavior.NeverUnderline;
             linkLabelLogout.LinkColor = Color.Black;
-            linkLabelLogout.Location = new Point(632, 358);
+            linkLabelLogout.Location = new Point(637, 357);
             linkLabelLogout.Name = "linkLabelLogout";
             linkLabelLogout.Size = new Size(117, 27);
             linkLabelLogout.TabIndex = 8;
@@ -148,6 +148,7 @@
             linkLabelCari.TabIndex = 13;
             linkLabelCari.TabStop = true;
             linkLabelCari.Text = "Cari Lahan Sekarang";
+            linkLabelCari.LinkClicked += linkLabelCari_LinkClicked;
             // 
             // V_LandingPage
             // 

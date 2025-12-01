@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pictureBox1 = new PictureBox();
             button1 = new Button();
-            dataGridView1 = new DataGridView();
-            colId = new DataGridViewTextBoxColumn();
-            colNama = new DataGridViewTextBoxColumn();
-            colLahan = new DataGridViewTextBoxColumn();
-            colTotal = new DataGridViewTextBoxColumn();
-            colWaktu = new DataGridViewTextBoxColumn();
-            colStatus = new DataGridViewTextBoxColumn();
-            colTanggal = new DataGridViewTextBoxColumn();
+            pictureBox2 = new PictureBox();
+            btnKembali = new Button();
+            dgvPesanan = new DataGridView();
+            id_detail = new DataGridViewTextBoxColumn();
+            nama_pemesan = new DataGridViewTextBoxColumn();
+            id_pemesanan = new DataGridViewTextBoxColumn();
+            id_lahan = new DataGridViewTextBoxColumn();
+            tanggal = new DataGridViewTextBoxColumn();
+            jangka_waktu = new DataGridViewTextBoxColumn();
+            harga = new DataGridViewTextBoxColumn();
+            status = new DataGridViewTextBoxColumn();
+            btnrefresh = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPesanan).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -65,111 +66,124 @@
             button1.TabIndex = 1;
             button1.Text = "KEMBALI";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
-            // dataGridView1
+            // pictureBox2
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colId, colNama, colLahan, colTotal, colWaktu, colStatus, colTanggal });
-            dataGridView1.Location = new Point(72, 95);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(661, 297);
-            dataGridView1.TabIndex = 2;
-            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            pictureBox2.Image = Properties.Resources.Frame_33;
+            pictureBox2.Location = new Point(-2, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(803, 451);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
             // 
-            // colId
+            // btnKembali
             // 
-            colId.DataPropertyName = "id_pesanan";
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            colId.DefaultCellStyle = dataGridViewCellStyle1;
-            colId.Frozen = true;
-            colId.HeaderText = "ID";
-            colId.MinimumWidth = 6;
-            colId.Name = "colId";
-            colId.ReadOnly = true;
-            colId.Width = 50;
+            btnKembali.Image = Properties.Resources.Group_235__2_;
+            btnKembali.Location = new Point(100, 55);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(112, 33);
+            btnKembali.TabIndex = 1;
+            btnKembali.Text = "KEMBALI";
+            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
             // 
-            // colNama
+            // dgvPesanan
             // 
-            colNama.DataPropertyName = "nama_penyewa";
-            colNama.Frozen = true;
-            colNama.HeaderText = "Nama";
-            colNama.MinimumWidth = 6;
-            colNama.Name = "colNama";
-            colNama.ReadOnly = true;
-            colNama.Width = 130;
+            dgvPesanan.AllowUserToAddRows = false;
+            dgvPesanan.AllowUserToDeleteRows = false;
+            dgvPesanan.BackgroundColor = Color.FromArgb(193, 230, 151);
+            dgvPesanan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPesanan.Columns.AddRange(new DataGridViewColumn[] { id_detail, nama_pemesan, id_pemesanan, id_lahan, tanggal, jangka_waktu, harga, status });
+            dgvPesanan.Location = new Point(72, 105);
+            dgvPesanan.Name = "dgvPesanan";
+            dgvPesanan.RowHeadersWidth = 51;
+            dgvPesanan.Size = new Size(652, 280);
+            dgvPesanan.TabIndex = 2;
+            dgvPesanan.CellDoubleClick += dgvPesanan_CellDoubleClick;
             // 
-            // colLahan
+            // id_detail
             // 
-            colLahan.DataPropertyName = "nama_lahan";
-            colLahan.Frozen = true;
-            colLahan.HeaderText = "Nama Lahan";
-            colLahan.MinimumWidth = 6;
-            colLahan.Name = "colLahan";
-            colLahan.ReadOnly = true;
-            colLahan.Width = 120;
+            id_detail.HeaderText = "id_detail";
+            id_detail.MinimumWidth = 6;
+            id_detail.Name = "id_detail";
+            id_detail.ReadOnly = true;
+            id_detail.Width = 125;
             // 
-            // colTotal
+            // nama_pemesan
             // 
-            colTotal.DataPropertyName = "total_harga";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "NO";
-            dataGridViewCellStyle2.NullValue = null;
-            colTotal.DefaultCellStyle = dataGridViewCellStyle2;
-            colTotal.HeaderText = "Total Harga";
-            colTotal.MinimumWidth = 6;
-            colTotal.Name = "colTotal";
-            colTotal.ReadOnly = true;
-            colTotal.Width = 120;
+            nama_pemesan.HeaderText = "nama_penyewa";
+            nama_pemesan.MinimumWidth = 6;
+            nama_pemesan.Name = "nama_pemesan";
+            nama_pemesan.Width = 125;
             // 
-            // colWaktu
+            // id_pemesanan
             // 
-            colWaktu.DataPropertyName = "jangka_waktu_tahun";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            colWaktu.DefaultCellStyle = dataGridViewCellStyle3;
-            colWaktu.HeaderText = "Waktu Sewa (Tahun)";
-            colWaktu.MinimumWidth = 6;
-            colWaktu.Name = "colWaktu";
-            colWaktu.ReadOnly = true;
-            colWaktu.Width = 80;
+            id_pemesanan.HeaderText = "id_pemesanan";
+            id_pemesanan.MinimumWidth = 6;
+            id_pemesanan.Name = "id_pemesanan";
+            id_pemesanan.ReadOnly = true;
+            id_pemesanan.Width = 125;
             // 
-            // colStatus
+            // id_lahan
             // 
-            colStatus.DataPropertyName = "status";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            colStatus.DefaultCellStyle = dataGridViewCellStyle4;
-            colStatus.HeaderText = "Status";
-            colStatus.MinimumWidth = 6;
-            colStatus.Name = "colStatus";
-            colStatus.ReadOnly = true;
-            colStatus.Width = 80;
+            id_lahan.HeaderText = "id_lahan";
+            id_lahan.MinimumWidth = 6;
+            id_lahan.Name = "id_lahan";
+            id_lahan.ReadOnly = true;
+            id_lahan.Width = 125;
             // 
-            // colTanggal
+            // tanggal
             // 
-            colTanggal.DataPropertyName = "tanggal_pesan";
-            colTanggal.HeaderText = "Tanggal";
-            colTanggal.MinimumWidth = 6;
-            colTanggal.Name = "colTanggal";
-            colTanggal.ReadOnly = true;
-            colTanggal.Width = 125;
+            tanggal.HeaderText = "tanggal_pemesanan";
+            tanggal.MinimumWidth = 6;
+            tanggal.Name = "tanggal";
+            tanggal.Width = 125;
+            // 
+            // jangka_waktu
+            // 
+            jangka_waktu.HeaderText = "jangka_waktu";
+            jangka_waktu.MinimumWidth = 6;
+            jangka_waktu.Name = "jangka_waktu";
+            jangka_waktu.Width = 125;
+            // 
+            // harga
+            // 
+            harga.HeaderText = "harga_sewa";
+            harga.MinimumWidth = 6;
+            harga.Name = "harga";
+            harga.Width = 125;
+            // 
+            // status
+            // 
+            status.HeaderText = "Status";
+            status.MinimumWidth = 6;
+            status.Name = "status";
+            status.Width = 125;
+            // 
+            // btnrefresh
+            // 
+            btnrefresh.BackColor = Color.FromArgb(193, 230, 151);
+            btnrefresh.Location = new Point(595, 59);
+            btnrefresh.Name = "btnrefresh";
+            btnrefresh.Size = new Size(109, 29);
+            btnrefresh.TabIndex = 3;
+            btnrefresh.Text = "REFRESH";
+            btnrefresh.UseVisualStyleBackColor = false;
+            btnrefresh.Click += btnrefresh_Click;
             // 
             // ListPesananAdmin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
-            Controls.Add(button1);
-            Controls.Add(pictureBox1);
+            Controls.Add(btnrefresh);
+            Controls.Add(dgvPesanan);
+            Controls.Add(btnKembali);
+            Controls.Add(pictureBox2);
             Name = "ListPesananAdmin";
-            Text = "ListPesananAdmin";
+            StartPosition = FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPesanan).EndInit();
             ResumeLayout(false);
         }
 
@@ -177,13 +191,17 @@
 
         private PictureBox pictureBox1;
         private Button button1;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn colId;
-        private DataGridViewTextBoxColumn colNama;
-        private DataGridViewTextBoxColumn colLahan;
-        private DataGridViewTextBoxColumn colTotal;
-        private DataGridViewTextBoxColumn colWaktu;
-        private DataGridViewTextBoxColumn colStatus;
-        private DataGridViewTextBoxColumn colTanggal;
+        private PictureBox pictureBox2;
+        private Button btnKembali;
+        private DataGridView dgvPesanan;
+        private Button btnrefresh;
+        private DataGridViewTextBoxColumn id_detail;
+        private DataGridViewTextBoxColumn nama_pemesan;
+        private DataGridViewTextBoxColumn id_pemesanan;
+        private DataGridViewTextBoxColumn id_lahan;
+        private DataGridViewTextBoxColumn tanggal;
+        private DataGridViewTextBoxColumn jangka_waktu;
+        private DataGridViewTextBoxColumn harga;
+        private DataGridViewTextBoxColumn status;
     }
 }

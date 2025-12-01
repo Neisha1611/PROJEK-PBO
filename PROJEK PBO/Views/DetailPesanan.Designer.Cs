@@ -30,9 +30,9 @@
         {
             pictureBox1 = new PictureBox();
             BtnKembali = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            tbJangkaWaktu = new TextBox();
+            tbHargaPerTahun = new TextBox();
+            tbTotalHarga = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -58,38 +58,39 @@
             BtnKembali.UseVisualStyleBackColor = true;
             BtnKembali.Click += BtnKembali_Click;
             // 
-            // textBox1
+            // tbJangkaWaktu
             // 
-            textBox1.Location = new Point(389, 132);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(245, 27);
-            textBox1.TabIndex = 2;
+            tbJangkaWaktu.Location = new Point(389, 132);
+            tbJangkaWaktu.Name = "tbJangkaWaktu";
+            tbJangkaWaktu.Size = new Size(245, 27);
+            tbJangkaWaktu.TabIndex = 2;
             // 
-            // textBox2
+            // tbHargaPerTahun
             // 
-            textBox2.Location = new Point(389, 183);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(245, 27);
-            textBox2.TabIndex = 3;
+            tbHargaPerTahun.Location = new Point(389, 183);
+            tbHargaPerTahun.Name = "tbHargaPerTahun";
+            tbHargaPerTahun.Size = new Size(245, 27);
+            tbHargaPerTahun.TabIndex = 3;
             // 
-            // textBox3
+            // tbTotalHarga
             // 
-            textBox3.Location = new Point(389, 238);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(245, 27);
-            textBox3.TabIndex = 4;
+            tbTotalHarga.Location = new Point(389, 238);
+            tbTotalHarga.Name = "tbTotalHarga";
+            tbTotalHarga.Size = new Size(245, 27);
+            tbTotalHarga.TabIndex = 4;
             // 
             // DetailPesanan
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(tbTotalHarga);
+            Controls.Add(tbHargaPerTahun);
+            Controls.Add(tbJangkaWaktu);
             Controls.Add(BtnKembali);
             Controls.Add(pictureBox1);
             Name = "DetailPesanan";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "DetailPesanan";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -100,8 +101,8 @@
 
         private PictureBox pictureBox1;
         private Button BtnKembali;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox tbJangkaWaktu;
+        private TextBox tbHargaPerTahun;
+        private TextBox tbTotalHarga;
     }
 }
