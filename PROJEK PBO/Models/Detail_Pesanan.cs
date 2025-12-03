@@ -11,6 +11,7 @@ namespace PROJEK_PBO.Models
         public int Id { get; set; }
         public int IdAkun { get; set; }
         public int IdLahan { get; set; }
+        public string NamaLahan { get; set; }
         public decimal TotalHarga { get; set; }
         public int JangkaWaktuTahun { get; set; }
         public decimal HargaPerTahun { get; set; }

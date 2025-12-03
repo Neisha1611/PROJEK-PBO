@@ -65,5 +65,10 @@ namespace PROJEK_PBO.Views
                 _authController.showDetailPesananAdmin(this, idDetail, _userId);
             }
         }
+
+        private void dgvPesanan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

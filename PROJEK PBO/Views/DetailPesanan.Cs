@@ -19,12 +19,39 @@ namespace PROJEK_PBO.Views
         public DetailPesanan(int DetailPesananId, int UserId )
         {
             InitializeComponent();
-            this._authcontroller = new AuthController();
-            this._userId = UserId;
+            _authcontroller = new AuthController();
+            _userId = UserId;
+            _detailPesananId = DetailPesananId;
+
+            LoadDetailPesanan();
+        }
+
+        private void LoadDetailPesanan()
+        {
+            try
+            {
+                var detail = _authcontroller.GetDetailPesananById(_detailPesananId);
+
+                if (detail != null)
+                {
+                    tbJangkaWaktu.Text = detail.JangkaWaktuTahun.ToString() + " Tahun";
+                    tbHargaPerTahun.Text = detail.HargaPerTahun.ToString("N0");
+                    tbTotalHarga.Text = detail.TotalHarga.ToString("N0");
+                }
+                else
+                {
+                    MessageBox.Show("Detail pesanan tidak ditemukan.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Gagal load detail pesanan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnKembali_Click(object sender, EventArgs e)
         {
+            this.Close();
             _authcontroller.showListPesanan(this, _userId);
         }
     }

@@ -88,6 +88,7 @@ namespace PROJEK_PBO.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Close();
             _authController.showLandingPage(this, _userId);
         }
 
@@ -177,6 +178,15 @@ namespace PROJEK_PBO.Views
                         dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
                         break;
                 }
+            }
+        }
+
+        private void dgvPesanan_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int idDetail = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idPesanan"].Value);
+                _authController.showDetailPesanan(this, idDetail, _userId);
             }
         }
     }

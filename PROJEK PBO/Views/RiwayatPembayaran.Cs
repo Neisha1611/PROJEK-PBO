@@ -18,12 +18,44 @@ namespace PROJEK_PBO.Views
         public RiwayatPembayaran(int userId)
         {
             InitializeComponent();
-            this._userId = userId;
+            _userId = userId;
+            _authController = new AuthController();
         }
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void RiwayatPembayaran_Load(object sender, EventArgs e)
+        {
+            LoadRiwayat();
+        }
+
+        private void LoadRiwayat()
+        {
+            try
+            {
+                DataTable dtRiwayat = _authController.GetPembayaranByUserId(_userId);
+                dgvRiwayatPembayaran.DataSource = dtRiwayat;
+                if (dtRiwayat.Rows.Count == 0)
+                {
+                    MessageBox.Show("Belum ada riwayat pembayaran.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvRiwayatPembayaran_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int idDetail = Convert.ToInt32(dgvRiwayatPembayaran.Rows[e.RowIndex].Cells["Id"].Value);
+                _authController.showDetailRiwayatPembayaran(this, idDetail, _userId);
+            }
         }
     }
 }

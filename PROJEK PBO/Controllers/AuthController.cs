@@ -67,6 +67,26 @@ namespace PROJEK_PBO.Controllers
             }
         }
 
+        public bool IsEmailOrPhoneExists(string Email, string Nomor_Telepon)
+        {
+            using var conn = new NpgsqlConnection(_dbContext.connStr);
+            conn.Open();
+
+            string query = @"
+                            SELECT COUNT(*) 
+                            FROM users 
+                            WHERE email = @email OR nomor_telepon = @nomor_telepon";
+
+            using var cmd = new NpgsqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@email", Email);
+            cmd.Parameters.AddWithValue("@nomor_telepon", Nomor_Telepon);
+
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+            return count > 0;
+        }
+
+
         public DataTable ProfileUser(int Id)
         {
             using var conn = new NpgsqlConnection(_dbContext.connStr);
@@ -474,7 +494,6 @@ namespace PROJEK_PBO.Controllers
                 return null;
             }
         }
-
         public DataTable GetPesananByUserId(int userId)
         {
             using var conn = new NpgsqlConnection(_dbContext.connStr);
@@ -493,6 +512,80 @@ namespace PROJEK_PBO.Controllers
             INNER JOIN lahan l ON dp.id_lahan = l.id
             WHERE p.id_pengguna = @userId
             ORDER BY dp.tanggal_pemesanan DESC";
+
+            using var cmd = new NpgsqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@userId", userId);
+
+            using var adapter = new NpgsqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            return dt;
+        }
+
+        public Detail_Pesanan GetDetailPembayaranById(int idDetail)
+        {
+            using var conn = new NpgsqlConnection(_dbContext.connStr);
+            conn.Open();
+
+            string query = @"SELECT 
+                            dp.id_detail AS id_detail,
+                            dp.id_lahan,
+                            l.nama_lahan AS nama_lahan,
+                            dp.tanggal_pemesanan AS tanggal_pemesanan,
+                            dp.jangka_waktu AS jangka_waktu,
+                            l.harga_per_tahun AS harga_sewa,
+                            l.harga_per_tahun * dp.jangka_waktu AS total,
+                            dp.status AS status,
+                            u.nama AS nama_penyewa       
+                            FROM detail_pemesanan dp
+                            INNER JOIN lahan l ON dp.id_lahan = l.id
+                            INNER JOIN pemesanan p ON dp.id_pemesanan = p.id_pemesanan
+                            INNER JOIN users u ON p.id_pengguna = u.id  
+                            WHERE dp.id_detail = @idDetail";
+
+            using var cmd = new NpgsqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@idDetail", idDetail);
+
+            using var reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                return new Detail_Pesanan
+                {
+                    Id = Convert.ToInt32(reader["id_detail"]),
+                    IdLahan = Convert.ToInt32(reader["id_lahan"]),
+                    NamaLahan = reader["nama_lahan"].ToString(),
+                    JangkaWaktuTahun = Convert.ToInt32(reader["jangka_waktu"]),
+                    NamaPenyewa = reader["nama_penyewa"].ToString(),
+                    HargaPerTahun = Convert.ToDecimal(reader["harga_sewa"]),
+                    TanggalPesan = Convert.ToDateTime(reader["tanggal_pemesanan"]) 
+                };
+            }
+
+            return null;
+        }
+
+        public DataTable GetPembayaranByUserId(int userId)
+        {
+            using var conn = new NpgsqlConnection(_dbContext.connStr);
+            conn.Open();
+
+            string query = @"SELECT 
+                            dp.id_detail AS id_detail,
+                            u.nama AS nama_penyewa,
+                            l.nama_lahan AS lahan,
+                            dp.tanggal_pemesanan AS tanggal,
+                            dp.jangka_waktu AS waktu,
+                            l.harga_per_tahun,
+                            l.harga_per_tahun * dp.jangka_waktu AS total,
+                            dp.status 
+                            FROM detail_pemesanan dp
+                            INNER JOIN pemesanan p ON dp.id_pemesanan = p.id_pemesanan
+                            INNER JOIN lahan l ON dp.id_lahan = l.id
+                            INNER JOIN users u ON p.id_pengguna = u.id
+                            WHERE p.id_pengguna = @userId AND dp.status = 'terkonfirmasi'
+                            ORDER BY dp.tanggal_pemesanan DESC";
 
             using var cmd = new NpgsqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@userId", userId);
@@ -553,6 +646,48 @@ namespace PROJEK_PBO.Controllers
             }
         }
 
+        public DataTable GetAllPenyewa()
+        {
+            using var conn = new NpgsqlConnection(_dbContext.connStr);
+            conn.Open();
+
+            string query = @"SELECT id , nama , nomor_telepon , alamat , email 
+                            FROM users 
+                            WHERE is_admin = FALSE
+                            ORDER BY id ASC";
+
+            using var cmd = new NpgsqlCommand(query, conn);
+            using var adapter = new NpgsqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            return dt;
+        }
+
+        public DataTable GetPendapatanPerTahun()
+        {
+            using var conn = new NpgsqlConnection(_dbContext.connStr);
+            conn.Open();
+
+            string query = @"SELECT 
+                        EXTRACT(YEAR FROM dp.tanggal_pemesanan) AS tahun,
+                        SUM(l.harga_per_tahun * dp.jangka_waktu) AS total_pendapatan
+                     FROM detail_pemesanan dp
+                     INNER JOIN lahan l ON dp.id_lahan = l.id
+                     WHERE dp.status = 'terkonfirmasi'
+                     GROUP BY tahun
+                     ORDER BY tahun DESC";
+
+            using var cmd = new NpgsqlCommand(query, conn);
+            using var adapter = new NpgsqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            return dt;
+        }
+
+
         public void showDetailSewa(Form form, int lahanId, int userId)
         {
             form.Hide();
@@ -572,6 +707,13 @@ namespace PROJEK_PBO.Controllers
             form.Hide();
             DetailPesanan detailPesanan = new DetailPesanan(detailPesananId, userId);
             detailPesanan.Show();
+        }
+
+        public void showDetailRiwayatPembayaran(Form form, int detailPembayaranId, int userId)
+        {
+            form.Hide();
+            DetailRiwayatPembayaran detailRiwayatPembayaran = new DetailRiwayatPembayaran(detailPembayaranId, userId);
+            detailRiwayatPembayaran.Show();
         }
 
         public void showRiwayatPembayaran(Form form, int userId)

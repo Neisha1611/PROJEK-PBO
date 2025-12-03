@@ -72,15 +72,18 @@
             dataGridView1.Location = new Point(101, 109);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(591, 284);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellDoubleClick += dgvPesanan_CellDoubleClick;
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             // 
             // idPesanan
             // 
+            idPesanan.DataPropertyName = "id_detail";
             idPesanan.HeaderText = "ID";
             idPesanan.MinimumWidth = 6;
             idPesanan.Name = "idPesanan";

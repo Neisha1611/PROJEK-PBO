@@ -32,10 +32,15 @@
             pictureBox1 = new PictureBox();
             linkLabelKembali = new LinkLabel();
             dbContextBindingSource = new BindingSource(components);
-            dataGridView1 = new DataGridView();
+            dgvPenyewa = new DataGridView();
+            id_penyewa = new DataGridViewTextBoxColumn();
+            nama_penyewa = new DataGridViewTextBoxColumn();
+            nomor_telepon = new DataGridViewTextBoxColumn();
+            alamat_penyewa = new DataGridViewTextBoxColumn();
+            email_penyewa = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dbContextBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPenyewa).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -52,6 +57,7 @@
             // 
             linkLabelKembali.AutoSize = true;
             linkLabelKembali.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            linkLabelKembali.Image = Properties.Resources.Group_254;
             linkLabelKembali.LinkBehavior = LinkBehavior.NeverUnderline;
             linkLabelKembali.LinkColor = Color.Black;
             linkLabelKembali.Location = new Point(111, 102);
@@ -66,23 +72,67 @@
             // 
             dbContextBindingSource.DataSource = typeof(Database.DbContext);
             // 
-            // dataGridView1
+            // dgvPenyewa
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.DataSource = dbContextBindingSource;
-            dataGridView1.Location = new Point(268, 175);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(300, 188);
-            dataGridView1.TabIndex = 2;
+            dgvPenyewa.AllowUserToAddRows = false;
+            dgvPenyewa.AutoGenerateColumns = false;
+            dgvPenyewa.BackgroundColor = Color.FromArgb(193, 230, 151);
+            dgvPenyewa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPenyewa.Columns.AddRange(new DataGridViewColumn[] { id_penyewa, nama_penyewa, nomor_telepon, alamat_penyewa, email_penyewa });
+            dgvPenyewa.DataSource = dbContextBindingSource;
+            dgvPenyewa.Location = new Point(129, 147);
+            dgvPenyewa.Name = "dgvPenyewa";
+            dgvPenyewa.RowHeadersVisible = false;
+            dgvPenyewa.RowHeadersWidth = 51;
+            dgvPenyewa.Size = new Size(566, 243);
+            dgvPenyewa.TabIndex = 2;
+            // 
+            // id_penyewa
+            // 
+            id_penyewa.DataPropertyName = "id";
+            id_penyewa.HeaderText = "ID";
+            id_penyewa.MinimumWidth = 6;
+            id_penyewa.Name = "id_penyewa";
+            id_penyewa.Width = 125;
+            // 
+            // nama_penyewa
+            // 
+            nama_penyewa.DataPropertyName = "nama";
+            nama_penyewa.HeaderText = "Nama";
+            nama_penyewa.MinimumWidth = 6;
+            nama_penyewa.Name = "nama_penyewa";
+            nama_penyewa.Width = 125;
+            // 
+            // nomor_telepon
+            // 
+            nomor_telepon.DataPropertyName = "nomor_telepon";
+            nomor_telepon.HeaderText = "No.Telp";
+            nomor_telepon.MinimumWidth = 6;
+            nomor_telepon.Name = "nomor_telepon";
+            nomor_telepon.Width = 125;
+            // 
+            // alamat_penyewa
+            // 
+            alamat_penyewa.DataPropertyName = "alamat";
+            alamat_penyewa.HeaderText = "Alamat";
+            alamat_penyewa.MinimumWidth = 6;
+            alamat_penyewa.Name = "alamat_penyewa";
+            alamat_penyewa.Width = 125;
+            // 
+            // email_penyewa
+            // 
+            email_penyewa.DataPropertyName = "email";
+            email_penyewa.HeaderText = "Email";
+            email_penyewa.MinimumWidth = 6;
+            email_penyewa.Name = "email_penyewa";
+            email_penyewa.Width = 125;
             // 
             // AkunPenyewa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(837, 595);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvPenyewa);
             Controls.Add(linkLabelKembali);
             Controls.Add(pictureBox1);
             Name = "AkunPenyewa";
@@ -91,7 +141,7 @@
             Load += AkunPenyewa_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dbContextBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPenyewa).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -101,6 +151,11 @@
         private PictureBox pictureBox1;
         private LinkLabel linkLabelKembali;
         private BindingSource dbContextBindingSource;
-        private DataGridView dataGridView1;
+        private DataGridView dgvPenyewa;
+        private DataGridViewTextBoxColumn id_penyewa;
+        private DataGridViewTextBoxColumn nama_penyewa;
+        private DataGridViewTextBoxColumn nomor_telepon;
+        private DataGridViewTextBoxColumn alamat_penyewa;
+        private DataGridViewTextBoxColumn email_penyewa;
     }
 }

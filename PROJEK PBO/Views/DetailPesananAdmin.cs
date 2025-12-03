@@ -99,6 +99,7 @@ namespace PROJEK_PBO.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
+           this.Close();
             _authController.showListPesananAdmin(this, _adminUserId);
         }
     }

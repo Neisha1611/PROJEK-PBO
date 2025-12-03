@@ -31,7 +31,6 @@
             pictureBox1 = new PictureBox();
             button1 = new Button();
             pictureBox2 = new PictureBox();
-            btnKembali = new Button();
             dgvPesanan = new DataGridView();
             id_detail = new DataGridViewTextBoxColumn();
             nama_pemesan = new DataGridViewTextBoxColumn();
@@ -42,6 +41,7 @@
             harga = new DataGridViewTextBoxColumn();
             status = new DataGridViewTextBoxColumn();
             btnrefresh = new Button();
+            btnKembali = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvPesanan).BeginInit();
@@ -77,17 +77,6 @@
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
-            // btnKembali
-            // 
-            btnKembali.Image = Properties.Resources.Group_235__2_;
-            btnKembali.Location = new Point(100, 55);
-            btnKembali.Name = "btnKembali";
-            btnKembali.Size = new Size(112, 33);
-            btnKembali.TabIndex = 1;
-            btnKembali.Text = "KEMBALI";
-            btnKembali.UseVisualStyleBackColor = true;
-            btnKembali.Click += btnKembali_Click;
-            // 
             // dgvPesanan
             // 
             dgvPesanan.AllowUserToAddRows = false;
@@ -97,9 +86,11 @@
             dgvPesanan.Columns.AddRange(new DataGridViewColumn[] { id_detail, nama_pemesan, id_pemesanan, id_lahan, tanggal, jangka_waktu, harga, status });
             dgvPesanan.Location = new Point(72, 105);
             dgvPesanan.Name = "dgvPesanan";
+            dgvPesanan.RowHeadersVisible = false;
             dgvPesanan.RowHeadersWidth = 51;
             dgvPesanan.Size = new Size(652, 280);
             dgvPesanan.TabIndex = 2;
+            dgvPesanan.CellContentClick += dgvPesanan_CellContentClick;
             dgvPesanan.CellDoubleClick += dgvPesanan_CellDoubleClick;
             // 
             // id_detail
@@ -172,6 +163,17 @@
             btnrefresh.UseVisualStyleBackColor = false;
             btnrefresh.Click += btnrefresh_Click;
             // 
+            // btnKembali
+            // 
+            btnKembali.Image = Properties.Resources.Group_235__2_;
+            btnKembali.Location = new Point(100, 55);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(112, 33);
+            btnKembali.TabIndex = 1;
+            btnKembali.Text = "KEMBALI";
+            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
+            // 
             // ListPesananAdmin
             // 
             ClientSize = new Size(800, 450);
@@ -192,7 +194,6 @@
         private PictureBox pictureBox1;
         private Button button1;
         private PictureBox pictureBox2;
-        private Button btnKembali;
         private DataGridView dgvPesanan;
         private Button btnrefresh;
         private DataGridViewTextBoxColumn id_detail;
@@ -203,5 +204,6 @@
         private DataGridViewTextBoxColumn jangka_waktu;
         private DataGridViewTextBoxColumn harga;
         private DataGridViewTextBoxColumn status;
+        private Button btnKembali;
     }
 }

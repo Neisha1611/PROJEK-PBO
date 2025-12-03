@@ -15,10 +15,35 @@ namespace PROJEK_PBO.Views
     {
         private AuthController _authController;
         private int _userId;
+        private DataTable dtUsers;
         public AkunPenyewa(int userId)
         {
             InitializeComponent();
-            this._userId = userId;
+            _authController = new AuthController();
+            _userId = userId;
+
+            LoadPenyewa();
+        }
+
+        private void LoadPenyewa()
+        {
+            try
+            {
+                dtUsers = _authController.GetAllPenyewa();
+
+                dgvPenyewa.DataSource = dtUsers;
+
+                if (dtUsers.Rows.Count == 0)
+                {
+                    MessageBox.Show("Belum ada akun penyewa.", "Info",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void AkunPenyewa_Load(object sender, EventArgs e)
@@ -29,6 +54,7 @@ namespace PROJEK_PBO.Views
         private void linkLabelKembali_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
+            _authController.showLandingPageAdmin(this, _userId);
         }
     }
 }

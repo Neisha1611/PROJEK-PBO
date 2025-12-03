@@ -1,4 +1,5 @@
-﻿using PROJEK_PBO.Controllers;
+﻿using Npgsql;
+using PROJEK_PBO.Controllers;
 using PROJEK_PBO.Models;
 using PROJEK_PBO.Views;
 using System;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Npgsql;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PROJEK_PBO.Views
 {
@@ -42,6 +43,12 @@ namespace PROJEK_PBO.Views
                 {
                     MessageBox.Show("Semua harus di isi", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }
+
+                if (_authController.IsEmailOrPhoneExists(user.Email, user.Nomor_Telpon))
+                {
+                    MessageBox.Show("Email atau Nomor HP sudah terdaftar. Gunakan yang lain.");
+                    return; 
                 }
 
                 if (!long.TryParse(user.Nomor_Telpon, out _))
