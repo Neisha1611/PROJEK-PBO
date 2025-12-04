@@ -5,12 +5,14 @@ using PROJEK_PBO.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static PROJEK_PBO.Controllers.AuthController;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PROJEK_PBO.Views
@@ -45,11 +47,6 @@ namespace PROJEK_PBO.Views
                     return;
                 }
 
-                if (_authController.IsEmailOrPhoneExists(user.Email, user.Nomor_Telpon))
-                {
-                    MessageBox.Show("Email atau Nomor HP sudah terdaftar. Gunakan yang lain.");
-                    return; 
-                }
 
                 if (!long.TryParse(user.Nomor_Telpon, out _))
                 {
@@ -60,6 +57,18 @@ namespace PROJEK_PBO.Views
                 if (user.Nomor_Telpon.Length > 13)
                 {
                     MessageBox.Show("Nomor telepon maksimal 13 angka!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (_authController.IsEmailExists(user.Email))
+                {
+                    MessageBox.Show("Email sudah terdaftar!", "Peringatan");
+                    return;
+                }
+
+                if (_authController.IsPhoneExists(user.Nomor_Telpon))
+                {
+                    MessageBox.Show("Nomor HP sudah terdaftar!", "Peringatan");
                     return;
                 }
 

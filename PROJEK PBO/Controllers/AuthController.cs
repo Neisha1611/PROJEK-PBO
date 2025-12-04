@@ -4,14 +4,16 @@ using PROJEK_PBO.Models;
 using PROJEK_PBO.Views;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PROJEK_PBO.Controllers
 {
-    public class AuthController
+    public class AuthController 
     {
         private DbContext _dbContext;
 
@@ -46,6 +48,7 @@ namespace PROJEK_PBO.Controllers
         {
             using var conn = new NpgsqlConnection(_dbContext.connStr);
             conn.Open();
+
             string query = "INSERT INTO users(nama, nomor_telepon, alamat, email, password) VALUES(@nama, @nomor_telepon, @alamat, @email, @password)";
 
             using var cmd = new NpgsqlCommand(query, conn);
@@ -67,23 +70,53 @@ namespace PROJEK_PBO.Controllers
             }
         }
 
-        public bool IsEmailOrPhoneExists(string Email, string Nomor_Telepon)
+        public interface IValid
+        {
+            bool IsExists(NpgsqlConnection conn, string value);
+        }
+
+        public class EmailValid : IValid
+        {
+            public bool IsExists(NpgsqlConnection conn, string Email)
+            {
+                string query = "SELECT COUNT(*) FROM users WHERE email = @email";
+                using var cmd = new NpgsqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@email", Email);
+
+                var count = (long)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
+
+        public class PhoneValid : IValid
+        {
+            public bool IsExists(NpgsqlConnection conn, string Nomor_Telepon)
+            {
+                string query = "SELECT COUNT(*) FROM users WHERE nomor_telepon = @nomor_telepon ";
+                using var cmd = new NpgsqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@nomor_telepon", Nomor_Telepon);
+
+                var count = (long)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
+
+        public bool IsEmailExists(string Email)
         {
             using var conn = new NpgsqlConnection(_dbContext.connStr);
             conn.Open();
 
-            string query = @"
-                            SELECT COUNT(*) 
-                            FROM users 
-                            WHERE email = @email OR nomor_telepon = @nomor_telepon";
+            IValid valid = new EmailValid();
+            return valid.IsExists(conn, Email);
+        }
 
-            using var cmd = new NpgsqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@email", Email);
-            cmd.Parameters.AddWithValue("@nomor_telepon", Nomor_Telepon);
+        public bool IsPhoneExists(string Nomor_Telepon)
+        {
+            using var conn = new NpgsqlConnection(_dbContext.connStr);
+            conn.Open();
 
-            int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-            return count > 0;
+            IValid valid = new PhoneValid();
+            return valid.IsExists(conn, Nomor_Telepon);
         }
 
 
@@ -206,6 +239,7 @@ namespace PROJEK_PBO.Controllers
                 throw new Exception($"Error update profile: {ex.Message}");
             }
         }
+
         public int InsertDetailPesanan(int idPemesanan, int idLahan, int jangkaWaktuTahun, decimal totalHarga)
         {
             try
