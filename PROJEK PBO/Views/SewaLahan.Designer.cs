@@ -327,6 +327,7 @@
             Controls.Add(btnKembali);
             Controls.Add(pictureBox1);
             Name = "SewaLahan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SewaLahan";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

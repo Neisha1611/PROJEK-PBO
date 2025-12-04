@@ -96,6 +96,7 @@
             Controls.Add(button1);
             Controls.Add(pictureBox1);
             Name = "Laporan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Laporan";
             Load += Laporan_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

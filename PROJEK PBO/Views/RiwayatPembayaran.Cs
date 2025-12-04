@@ -25,6 +25,7 @@ namespace PROJEK_PBO.Views
         private void btnKembali_Click(object sender, EventArgs e)
         {
             this.Close();
+            _authController.showLandingPage(this,_userId);
         }
 
         private void RiwayatPembayaran_Load(object sender, EventArgs e)
