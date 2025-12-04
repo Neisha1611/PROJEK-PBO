@@ -70,14 +70,17 @@ namespace PROJEK_PBO.Controllers
             }
         }
 
-        public interface IValid
+        public abstract class IValid
         {
-            bool IsExists(NpgsqlConnection conn, string value);
+            public virtual bool IsExists(NpgsqlConnection conn, string value)
+            {
+                return false;
+            }
         }
 
         public class EmailValid : IValid
         {
-            public bool IsExists(NpgsqlConnection conn, string Email)
+            public override bool IsExists(NpgsqlConnection conn, string Email)
             {
                 string query = "SELECT COUNT(*) FROM users WHERE email = @email";
                 using var cmd = new NpgsqlCommand(query, conn);
@@ -90,7 +93,7 @@ namespace PROJEK_PBO.Controllers
 
         public class PhoneValid : IValid
         {
-            public bool IsExists(NpgsqlConnection conn, string Nomor_Telepon)
+            public override bool IsExists(NpgsqlConnection conn, string Nomor_Telepon)
             {
                 string query = "SELECT COUNT(*) FROM users WHERE nomor_telepon = @nomor_telepon ";
                 using var cmd = new NpgsqlCommand(query, conn);
